@@ -1,7 +1,20 @@
 luamvc
 ======
 
-a simple web MVC framework written in Lua
+
+A simple MVC framework written in Lua for Openresty
+
+It is a full MVC framework with ORM. 
+
+Depends on :
+  resty-template
+  luasocket
+  uuid
+
+  
+How to use:
+  1, I suggest that an independant dir in openresty home like scriptlua, clone it there.
+
 
 
 an example directory
@@ -33,3 +46,6 @@ example nginx.conf
             ';
         }
 
+
+
+This project is just for study, not production ready. 
