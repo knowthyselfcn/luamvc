@@ -21,7 +21,7 @@ Just clone luamvc into the scriptdir.
 
 
 
-nginx.conf 
+example nginx.conf 
 
         # lsp pages are dilivered to dispatcher
         location ~\.lsp$ {
