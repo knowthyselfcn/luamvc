@@ -47,5 +47,12 @@ example nginx.conf
         }
 
 
+lua script in WEB-INF cannot be accessed directly. It needs mapping. In LuaMVC, the mapping strategy is rather simple. 
+Becuase LuaMVC is not designed for large and complex applications, we use "convention over configuration". The lua script
+is WEB-INF must be like controllname/actionName.lsp and it can only be accessed by controllerName/actionName.lsp. The 
+request is processed by a  function named "actionName" in script/controller/controllerName.lua.
+
+
+
 
 This project is just for study, not production ready. 
