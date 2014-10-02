@@ -36,8 +36,7 @@ Just clone luamvc into the scriptdir.
 
 example nginx.conf 
 
-        # lsp pages are dilivered to dispatcher
-        location ~\.lsp$ {
+        location ~* \.lsp$  {
             client_max_body_size 500k;
             client_body_buffer_size 500k;
             content_by_lua '
