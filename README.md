@@ -25,12 +25,14 @@ scriptdir:
           -- luamvc
           -- svc      
 htmlroot:
-          -- tpl        lua template files
+          -- WEB-INF        lua template files dir (private and protected)
           -- css
           -- js
           -- *.html
          
 Just clone luamvc into the scriptdir.
+
+
 
 
 
@@ -45,7 +47,10 @@ example nginx.conf
             ';
         }
 
-
+And 
+    location ^~ /WEB-INF/ {
+            deny all;
+        }
 lua script in WEB-INF cannot be accessed directly. It needs mapping. In LuaMVC, the mapping strategy is rather simple. 
 Becuase LuaMVC is not designed for large and complex applications, we use "convention over configuration". The lua script
 is WEB-INF must be like controllname/actionName.lsp and it can only be accessed by controllerName/actionName.lsp. The 
