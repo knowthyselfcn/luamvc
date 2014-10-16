@@ -20,6 +20,7 @@ end
 -----------------------------------------------------------
 
 function _M.dispatch(self )
+	ngx.log(ngx.ERR, " entering dispatch() ----------------------------------------------") 
     local template = require ("luamvc.template")
 
     local reqURL = ngx.var.uri
@@ -48,7 +49,10 @@ function _M.dispatch(self )
     if "POST" == ngx.req.get_method() then
         local h = ngx.req.get_headers()
         local contentTypeFull = h['content-type']
+ 	local contentLength = h['Content-Length']
         local contentType = util.split(contentTypeFull, "[\\;]")[1]
+	ngx.log(ngx.ERR, " content-type is  => ".. contentType  )
+	ngx.log(ngx.ERR, " content-length is  => ".. contentLength )
         
         if "multipart/form-data" == contentType then
             req.files = {}
@@ -63,8 +67,6 @@ function _M.dispatch(self )
 
     local controllerFile =  ""
     local tpldir = "" 
-    local goon = false
-    -- if there is no such action, try to render the tpl directly
     local sessionId = ngx.var.cookie_LSESSIONID              
     local now = os.time()
 
