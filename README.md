@@ -17,21 +17,21 @@ How to use:
 
 
 
-an example directory
+an example directory:
 
-scriptdir:
-          -- controller/
-              -- private/
-              -- public/
-          -- lib/
-          -- luamvc/         luamvc repo 
-          -- svc/ 
-htmlroot:
-          -- WEB-INF/        lua template files dir (private and protected)
-          -- tpl/          public template dir, 
-          -- css/
-          -- js/
-          -- *.html
+          script/
+                    -- controller/
+                        -- private/
+                        -- public/
+                    -- lib/
+                    -- luamvc/         luamvc repo 
+                    -- svc/ 
+          html/
+                    -- WEB-INF/        lua template files dir (private and protected)
+                    -- tpl/          public template dir, 
+                    -- css/
+                    -- js/
+                    -- *.html
          
 Just clone luamvc into the scriptdir.
 
