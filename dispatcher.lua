@@ -20,7 +20,7 @@ end
 -----------------------------------------------------------
 
 function _M.dispatch(self )
-	ngx.log(ngx.ERR, " entering dispatch() ----------------------------------------------") 
+    ngx.log(ngx.ERR, " entering dispatch() ----------------------------------------------") 
     local template = require ("luamvc.template")
 
     local reqURL = ngx.var.uri
@@ -75,13 +75,11 @@ function _M.dispatch(self )
     ngx.log(ngx.ERR, "controller is private")
         controllerFile = "controller.private." .. controller
         tpldir = "../html/WEB-INF"
-        -- ngx.print("    <hr />" .. "    private controller :" )
     elseif  _M.publics[controller] then
     ngx.log(ngx.ERR, "controller is public ")
         controllerFile = "controller.private." .. controller
         controllerFile = "controller.public." .. controller
 	tpldir = "../html/tpl"
-        --ngx.print("    <hr />" .. "    public controller :" )
     else 
         ngx.print("No such controller :".. controllerFile  )
         ngx.exit(200)
@@ -132,10 +130,9 @@ function _M.dispatch(self )
         ngx.log(ngx.ERR, "no need to check actionFun existence")
     end
 
-        --ngx.print("request url :".. tpldir ..reqURL)
     
-    local view = tpldir .. reqURL
     assert( "table" == type(response), "resp has to be a table")
+    local view = tpldir .. reqURL
     template.render(view, { req = req, resp = response} )
 end
 
