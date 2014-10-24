@@ -17,8 +17,7 @@ end
 function _M.generateSessionId(self) 
     local sessionId = _uuid()
     local currentTimeSecond = os.time()
-    local expireAt = ngx.cookie_time( currentTimeSecond + 1800 )        -- default expire duration: 30m
-    ngx.header['Set-Cookie'] = 'LSESSIONID='.. sessionId ..'; path=/; expires=' .. expireAt 
+    ngx.header['Set-Cookie'] = 'LSESSIONID='.. sessionId ..'; path=/; expires=session'
     _M.sessionIds[sessionId] = {lastvisit = currentTimeSecond, visits = 1} 
     return sessionId
 end
@@ -35,6 +34,7 @@ function _M.checkSessionID(self, sessionId)
             _M.sessionIds[sessionId] = nil
             ngx.print("session expired")
         else
+	    --ngx.log(ngx.ERR, "The " .. session.visits .. "th visit.")
             session.lastvisit = currentTimeSecond 
             session.visits = session.visits + 1
             res = true

@@ -42,7 +42,6 @@ function _M.dispatch(self )
     local req = {}
     local response = {}    
     ngx.log(ngx.ERR, "--------> method -is  => ".. ngx.req.get_method() )
-    ngx.req.read_body()
     if "POST" == ngx.req.get_method() then
         local h = ngx.req.get_headers()
         local contentTypeFull = h['content-type']
@@ -54,9 +53,11 @@ function _M.dispatch(self )
         if "multipart/form-data" == contentType then
             req.files = {}
         else
+    	    ngx.req.read_body()
+            req = ngx.req.get_post_args()
         end
-        req = ngx.req.get_post_args()
     else
+    	ngx.req.read_body()
         req = ngx.req.get_uri_args()
     end
 
@@ -90,8 +91,8 @@ function _M.dispatch(self )
     actionFn = ctrlObj[actionName]
     
     if nil == actionFn then
-        ngx.print("No such action :".. actionName )
-        ngx.exit(200)
+        --ngx.print("No such action :".. actionName )
+        --ngx.exit(200)
     else
         response = actionFn({}, req)
     end
